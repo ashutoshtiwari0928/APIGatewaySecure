@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: APIGatewayChatFlow
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: user-service
+              uri: lb://SECURE
+              predicates:
+                - Path=/api/secure/**
+              filters:
+                - StripPrefix=2
+
+
+
+
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+
+
+server:
+  port: 8082
